@@ -17,6 +17,7 @@ RUN a2enmod rewrite;
 # Update PHP v7.3
 #
 RUN docker-php-ext-install mysqli;
+RUN docker-php-ext-install pdo pdo_mysql
 
 #RUN yum -y update; \
 #    yum-config-manager --enable remi-php73; \
