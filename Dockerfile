@@ -57,9 +57,9 @@ RUN docker-php-ext-install mysqli;
 #RUN rm -R /var/www; \
 #    rm /etc/httpd/conf.d/welcome.conf;
 #
-#COPY ./httpd/httpd.conf /etc/httpd/conf/httpd.conf
+COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 #COPY ./php/php-production.ini /etc/php.ini
-COPY html /var/www/html
+COPY public /var/www/public
 #RUN mkdir /tmp/file_upload
 #
 ##
