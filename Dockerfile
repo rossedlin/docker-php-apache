@@ -9,6 +9,11 @@ FROM php:7.3-apache
 
 
 #
+# Update Apache2
+#
+RUN a2enmod rewrite;
+
+#
 # Update PHP v7.3
 #
 RUN docker-php-ext-install mysqli;
