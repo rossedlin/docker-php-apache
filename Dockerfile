@@ -77,6 +77,6 @@ COPY public /var/www/public
 #
 # Finish
 #
-#WORKDIR /var/www
+WORKDIR /var/www
 #EXPOSE 80
 #CMD apachectl -D FOREGROUND
