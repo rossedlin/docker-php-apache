@@ -1,5 +1,29 @@
 FROM php:7.3-apache
 
+#
+# Install ZIP
+#
+RUN apt-get update && \
+    apt-get install -y \
+    libzip-dev \
+    zip; \
+    docker-php-ext-install zip; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
+# Install MySQL
+#
+RUN docker-php-ext-install mysqli pdo pdo_mysql;
+
+#
+# Install Imagick
+#
+RUN apt-get update; \
+    apt-get install -y libmagickwand-dev --no-install-recommends; \
+    pecl install imagick; \
+	docker-php-ext-enable imagick; \
+	rm -rf /var/lib/apt/lists/*;
+
 ##
 ## Install Libraries
 ##
@@ -7,70 +31,47 @@ FROM php:7.3-apache
 #    git; \
 #    rm -rf /var/lib/apt/lists/*;
 
+#RUN apt-get update -y && apt-get install -y \
+#    sendmail \
+#    libpng-dev; \
+#    rm -rf /var/lib/apt/lists/*;
+#
+#RUN apt-get update && \
+#    apt-get install -y \
+#    zlib1g-dev; \
+#    rm -rf /var/lib/apt/lists/*;
 
 #
 # Update Apache2
 #
+
+
+
+#RUN docker-php-ext-install mbstring
+#RUN docker-php-ext-install gd
+
+
+
+#
+#
+#
+#RUN docker-php-ext-install exif
+
+
+
+
+#
+# Tweak Apache
+#
 RUN a2enmod rewrite;
-
-#
-# Update PHP v7.3
-#
-RUN docker-php-ext-install mysqli;
-RUN docker-php-ext-install pdo pdo_mysql
-
-#RUN yum -y update; \
-#    yum-config-manager --enable remi-php73; \
-#    yum install -y php \
-#    php-mbstring \
-#    php-mcrypt \
-#    php-dom \
-#    php-cli \
-#    php-gd \
-#    php-curl \
-#    php-mysql \
-#    php-ldap \
-#    php-zip \
-#    php-unzip \
-#    php-fileinfo; \
-#    yum clean all; \
-#    rm -rf /var/cache/yum;
-
-##
-## Install Composer
-##
-#RUN curl -sS https://getcomposer.org/installer | php; \
-#    mv composer.phar /usr/local/bin/composer;
-#
-##
-## Install NodeJS & NPM
-##
-#RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -; \
-#    yum -y update; \
-#    yum -y install nodejs; \
-#    yum clean all; \
-#    rm -rf /var/cache/yum;
-#
-##
-## Cleanup
-##
-#RUN rm -Rf /tmp; \
-#    mkdir /tmp;
-#
-##
-## Setup Httpd & PHP
-##
-#RUN rm -R /var/www; \
-#    rm /etc/httpd/conf.d/welcome.conf;
-#
 COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 #COPY ./php/php-production.ini /etc/php.ini
 COPY public /var/www/public
 #RUN mkdir /tmp/file_upload
+
 #
-##
-## Perms
-##
+# Perms
+#
 #RUN chmod 777 -R /tmp
 #RUN chmod 777 -R /var/www
 
@@ -78,5 +79,3 @@ COPY public /var/www/public
 # Finish
 #
 WORKDIR /var/www
-#EXPOSE 80
-#CMD apachectl -D FOREGROUND
