@@ -65,7 +65,7 @@ RUN apt-get update; \
 #
 RUN a2enmod rewrite;
 COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
-#COPY ./php/php-production.ini /etc/php.ini
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 COPY public /var/www/public
 RUN rm -R /var/www/html
 #RUN mkdir /tmp/file_upload
