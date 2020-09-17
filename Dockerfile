@@ -67,13 +67,14 @@ RUN a2enmod rewrite;
 COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 #COPY ./php/php-production.ini /etc/php.ini
 COPY public /var/www/public
+RUN rm -R /var/www/html
 #RUN mkdir /tmp/file_upload
 
 #
 # Perms
 #
 #RUN chmod 777 -R /tmp
-#RUN chmod 777 -R /var/www
+RUN chmod 777 -R /var/www
 
 #
 # Finish
