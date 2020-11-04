@@ -24,6 +24,16 @@ RUN apt-get update; \
 	docker-php-ext-enable imagick; \
 	rm -rf /var/lib/apt/lists/*;
 
+#
+# Install mbstring
+#
+RUN docker-php-ext-install mbstring
+
+#
+# Install GD
+#
+RUN docker-php-ext-install gd
+
 ##
 ## Install Libraries
 ##
@@ -40,17 +50,6 @@ RUN apt-get update; \
 #    apt-get install -y \
 #    zlib1g-dev; \
 #    rm -rf /var/lib/apt/lists/*;
-
-#
-# Update Apache2
-#
-
-
-
-#RUN docker-php-ext-install mbstring
-#RUN docker-php-ext-install gd
-
-
 
 #
 #
