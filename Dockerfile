@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 #
 # Install ZIP
@@ -33,31 +33,6 @@ RUN docker-php-ext-install mbstring
 # Install GD
 #
 RUN docker-php-ext-install gd
-
-##
-## Install Libraries
-##
-#RUN apt-get update && apt-get install -y \
-#    git; \
-#    rm -rf /var/lib/apt/lists/*;
-
-#RUN apt-get update -y && apt-get install -y \
-#    sendmail \
-#    libpng-dev; \
-#    rm -rf /var/lib/apt/lists/*;
-#
-#RUN apt-get update && \
-#    apt-get install -y \
-#    zlib1g-dev; \
-#    rm -rf /var/lib/apt/lists/*;
-
-#
-#
-#
-#RUN docker-php-ext-install exif
-
-
-
 
 #
 # Tweak Apache
