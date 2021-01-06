@@ -48,7 +48,7 @@ RUN rm -R /var/www/html
 #
 # Perms
 #
-#RUN chmod 777 -R /tmp
+RUN chmod 777 -R /tmp
 RUN chmod 777 -R /var/www
 
 #
