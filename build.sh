@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t rossedlin/php-apache:7.3 .
+docker build -t rossedlin/php-apache:7.2 .
