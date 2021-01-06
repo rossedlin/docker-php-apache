@@ -1,15 +1,15 @@
 FROM php:5.6-apache
 
-##
-## Install ZIP
-##
-#RUN apt-get update && \
-#    apt-get install -y \
-#    libzip-dev \
-#    zip; \
-#    docker-php-ext-install zip; \
-#    rm -rf /var/lib/apt/lists/*;
 #
+# Install ZIP
+#
+RUN apt-get update && \
+    apt-get install -y \
+    libzip-dev \
+    zip; \
+    docker-php-ext-install zip; \
+    rm -rf /var/lib/apt/lists/*;
+
 ##
 ## Install MySQL
 ##
