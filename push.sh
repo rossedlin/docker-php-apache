@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker push rossedlin/php-apache:7.0
+docker push rossedlin/php-apache:5.6
