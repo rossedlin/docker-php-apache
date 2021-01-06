@@ -27,10 +27,7 @@ RUN apt-get update; \
 #
 # Install mbstring
 #
-RUN apt-get update; \
-    apt-get install -y libonig-dev; \
-    docker-php-ext-install mbstring; \
-    rm -rf /var/lib/apt/lists/*;
+RUN docker-php-ext-install mbstring
 
 #
 # Install GD
@@ -50,7 +47,7 @@ RUN rm -R /var/www/html
 #
 # Perms
 #
-#RUN chmod 777 -R /tmp
+RUN chmod 777 -R /tmp
 RUN chmod 777 -R /var/www
 
 #
