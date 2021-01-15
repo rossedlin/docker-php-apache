@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  web:
+   image: rossedlin/php-apache:7.3
+   env_file:
+     - .env
+   ports:
+     - "80:80"
+   volumes:
+     - ./:/var/www
