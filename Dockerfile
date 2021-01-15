@@ -27,7 +27,10 @@ RUN apt-get update; \
 #
 # Install mbstring
 #
-RUN docker-php-ext-install mbstring
+RUN apt-get update; \
+    apt-get install -y libonig-dev; \
+    docker-php-ext-install mbstring; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install GD
