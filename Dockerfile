@@ -34,6 +34,14 @@ RUN docker-php-ext-install mbstring
 #
 RUN docker-php-ext-install gd
 
+#
+# Install Intl
+#
+RUN apt-get -y update; \
+    apt-get install -y libicu-dev; \
+    docker-php-ext-configure intl; \
+    docker-php-ext-install intl; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Tweak Apache
