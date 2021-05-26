@@ -10,11 +10,11 @@ RUN apt-get update && \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
 
-##
-## Install MySQL
-##
-#RUN docker-php-ext-install mysqli pdo pdo_mysql;
 #
+# Install MySQL
+#
+RUN docker-php-ext-install mysqli pdo pdo_mysql;
+
 ##
 ## Install Imagick
 ##
@@ -23,7 +23,7 @@ RUN apt-get update && \
 #    pecl install imagick; \
 #	docker-php-ext-enable imagick; \
 #	rm -rf /var/lib/apt/lists/*;
-#
+
 ##
 ## Install mbstring
 ##
@@ -38,12 +38,12 @@ RUN apt-get update && \
 ##
 ## Tweak Apache
 ##
-#RUN a2enmod rewrite;
-#COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+RUN a2enmod rewrite;
+COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 #RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
-#COPY public /var/www/public
-#RUN rm -R /var/www/html
-##RUN mkdir /tmp/file_upload
+COPY public /var/www/public
+RUN rm -R /var/www/html
+#RUN mkdir /tmp/file_upload
 #
 ##
 ## Perms
