@@ -34,7 +34,6 @@ RUN docker-php-ext-install mbstring
 #
 RUN docker-php-ext-install gd
 
-
 #
 # Tweak Apache
 #
