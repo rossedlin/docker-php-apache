@@ -34,21 +34,22 @@ RUN docker-php-ext-install mbstring
 #
 RUN docker-php-ext-install gd
 
-
 #
 # Tweak Apache
 #
-RUN a2enmod rewrite;
-COPY ./apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
-RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY php/php.ini-development /usr/local/etc/php/php.ini
 COPY public /var/www/public
+
+RUN a2enmod rewrite;
 RUN rm -R /var/www/html
-#RUN mkdir /tmp/file_upload
+RUN mkdir /tmp/file_upload
 
 #
 # Perms
 #
 RUN chmod 777 -R /tmp
+RUN chmod 777 -R /tmp/file_upload
 RUN chmod 777 -R /var/www
 
 #
