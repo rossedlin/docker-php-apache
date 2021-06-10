@@ -38,7 +38,7 @@ RUN docker-php-ext-install gd
 # Tweak Apache
 #
 COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY php/php.ini-development /usr/local/etc/php/php.ini
+COPY php/php-development.ini /usr/local/etc/php/php.ini
 COPY public /var/www/public
 
 RUN a2enmod rewrite;
