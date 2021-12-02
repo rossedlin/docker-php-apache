@@ -38,6 +38,11 @@ RUN apt-get update; \
 RUN docker-php-ext-install gd
 
 #
+# Install BC Math
+#
+RUN docker-php-ext-install bcmath
+
+#
 # Tweak Apache
 #
 COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
