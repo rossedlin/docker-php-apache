@@ -3,17 +3,17 @@ FROM php:7.4-apache
 #
 # Install ZIP
 #
-RUN apt-get update && \
-    apt-get install -y \
-    libzip-dev \
-    zip; \
+RUN apt-get update; \
+    apt-get install -y libzip-dev zip; \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install MySQL
 #
-RUN docker-php-ext-install mysqli pdo pdo_mysql;
+RUN apt-get update; \
+    docker-php-ext-install mysqli pdo pdo_mysql; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Imagick
@@ -35,17 +35,22 @@ RUN apt-get update; \
 #
 # Install GD
 #
-RUN docker-php-ext-install gd
+RUN apt-get update; \
+    docker-php-ext-install gd; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install BC Math
 #
-RUN docker-php-ext-install bcmath
+RUN apt-get update; \
+    docker-php-ext-install bcmath; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Tweak Apache
 #
 COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 COPY php/php.ini-development /usr/local/etc/php/php.ini
 COPY public /var/www/public
 
