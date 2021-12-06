@@ -47,6 +47,14 @@ RUN apt-get update; \
     rm -rf /var/lib/apt/lists/*;
 
 #
+# Install SSL
+#
+RUN apt-get update; \
+    docker-php-ext-install sockets; \
+    a2enmod ssl; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Tweak Apache
 #
 COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
