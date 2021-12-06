@@ -47,9 +47,18 @@ RUN apt-get update; \
     rm -rf /var/lib/apt/lists/*;
 
 #
+# Install SSL
+#
+RUN apt-get update; \
+    apt install certbot python3-certbot-apache; \
+    docker-php-ext-install sockets; \
+    a2enmod ssl; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Tweak Apache
 #
-COPY apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 COPY php/php.ini-development /usr/local/etc/php/php.ini
 COPY public /var/www/public
 
