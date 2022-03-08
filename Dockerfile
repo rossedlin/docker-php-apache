@@ -1,59 +1,81 @@
-FROM php:7.4-apache
+FROM php:8.0-apache
+
 
 #
 # Install ZIP
 #
-RUN apt-get update; \
-    apt-get install -y libzip-dev zip; \
-    docker-php-ext-install zip; \
-    rm -rf /var/lib/apt/lists/*;
+#RUN apt-get update; \
+#    apt-get install -y libzip-dev zip; \
+#    docker-php-ext-install zip; \
+#    rm -rf /var/lib/apt/lists/*;
+
+
+##
+## Install Vim
+##
+#RUN apt-get update && \
+#    apt-get install -y vim; \
+#    rm -rf /var/lib/apt/lists/*;
 
 #
-# Install MySQL
+# Install MySQL Client
 #
-RUN apt-get update; \
-    docker-php-ext-install mysqli pdo pdo_mysql; \
-    rm -rf /var/lib/apt/lists/*;
+#RUN apt-get update && \
+#    apt-get install -y \
+#    default-mysql-client; \
+#    rm -rf /var/lib/apt/lists/*;
 
-#
-# Install Imagick
-#
-RUN apt-get update; \
-    apt-get install -y libmagickwand-dev --no-install-recommends; \
-    pecl install imagick; \
-	docker-php-ext-enable imagick; \
-	rm -rf /var/lib/apt/lists/*;
+##
+## Install Composer
+##
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-#
-# Install mbstring
-#
-RUN apt-get update; \
-    apt-get install -y libonig-dev; \
-    docker-php-ext-install mbstring; \
-    rm -rf /var/lib/apt/lists/*;
+##
+## Install MySQL
+##
+#RUN apt-get update; \
+#    docker-php-ext-install mysqli pdo pdo_mysql; \
+#    rm -rf /var/lib/apt/lists/*;
 
+##
+## Install Imagick
+##
+#RUN apt-get update; \
+#    apt-get install -y libmagickwand-dev --no-install-recommends; \
+#    pecl install imagick; \
+#	docker-php-ext-enable imagick; \
+#	rm -rf /var/lib/apt/lists/*;
 #
-# Install GD
+##
+## Install mbstring
+##
+#RUN apt-get update; \
+#    apt-get install -y libonig-dev; \
+#    docker-php-ext-install mbstring; \
+#    rm -rf /var/lib/apt/lists/*;
 #
-RUN apt-get update; \
-    docker-php-ext-install gd; \
-    rm -rf /var/lib/apt/lists/*;
-
+##
+## Install GD
+##
+#RUN apt-get update; \
+#    docker-php-ext-install gd; \
+#    rm -rf /var/lib/apt/lists/*;
 #
-# Install BC Math
+##
+## Install BC Math
+##
+#RUN apt-get update; \
+#    docker-php-ext-install bcmath; \
+#    rm -rf /var/lib/apt/lists/*;
 #
-RUN apt-get update; \
-    docker-php-ext-install bcmath; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install SSL
-#
-RUN apt-get update; \
-    apt install certbot python3-certbot-apache; \
-    docker-php-ext-install sockets; \
-    a2enmod ssl; \
-    rm -rf /var/lib/apt/lists/*;
+##
+## Install SSL
+##
+#RUN apt-get update; \
+#    apt install certbot python3-certbot-apache; \
+#    docker-php-ext-install sockets; \
+#    a2enmod ssl; \
+#    rm -rf /var/lib/apt/lists/*;
 
 #
 # Tweak Apache

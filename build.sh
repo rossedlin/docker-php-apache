@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-docker build -t rossedlin/php-apache:7.4 .
+docker compose down
+docker build -t rossedlin/php-apache:8.0 .
