@@ -25,10 +25,10 @@ FROM php:8.0-apache
 #    default-mysql-client; \
 #    rm -rf /var/lib/apt/lists/*;
 
-##
-## Install Composer
-##
-#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#
+# Install Composer
+#
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ##
 ## Install MySQL
