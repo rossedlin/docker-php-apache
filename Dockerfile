@@ -4,10 +4,10 @@ FROM php:8.0-apache
 #
 # Install ZIP
 #
-#RUN apt-get update; \
-#    apt-get install -y libzip-dev zip; \
-#    docker-php-ext-install zip; \
-#    rm -rf /var/lib/apt/lists/*;
+RUN apt-get update; \
+    apt-get install -y libzip-dev zip; \
+    docker-php-ext-install zip; \
+    rm -rf /var/lib/apt/lists/*;
 
 
 ##
@@ -30,12 +30,12 @@ FROM php:8.0-apache
 #
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-##
-## Install MySQL
-##
-#RUN apt-get update; \
-#    docker-php-ext-install mysqli pdo pdo_mysql; \
-#    rm -rf /var/lib/apt/lists/*;
+#
+# Install MySQL
+#
+RUN apt-get update; \
+    docker-php-ext-install mysqli pdo pdo_mysql; \
+    rm -rf /var/lib/apt/lists/*;
 
 ##
 ## Install Imagick
