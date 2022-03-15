@@ -1,0 +1,14 @@
+#image: node:10.15.0
+
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        script:
+          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+          - docker build -t rossedlin/php-apache:8.0 .
+          - docker push rossedlin/php-apache:8.0
+        services:
+          - docker
