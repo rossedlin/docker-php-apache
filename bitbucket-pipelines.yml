@@ -6,7 +6,7 @@ pipelines:
     - step:
         script:
           - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-          - docker build -t rossedlin/php-apache:5.6 .
-          - docker push rossedlin/php-apache:5.6
+          - docker build -t rossedlin/php-apache:5.5 .
+          - docker push rossedlin/php-apache:5.5
         services:
           - docker
