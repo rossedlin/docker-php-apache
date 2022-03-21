@@ -5,14 +5,16 @@ pipelines:
   default:
 
     # Build Docker Image
-#    - step:
-#        script:
-#          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-#          - docker build -t rossedlin/php-apache:7.4 .
-#          - docker push rossedlin/php-apache:7.4
+    - step:
+        name: 'Build Docker Image'
+        script:
+          - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+          - docker build -t rossedlin/php-apache:7.4 .
+          - docker push rossedlin/php-apache:7.4
 
     # Trigger Dev Pipeline
     - step:
+        name: 'Trigger Dev Pipeline'
         script:
           - pipe: atlassian/trigger-pipeline:5.0.0
             variables:
