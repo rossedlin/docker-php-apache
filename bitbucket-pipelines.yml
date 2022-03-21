@@ -14,7 +14,8 @@ pipelines:
             variables:
               BITBUCKET_USERNAME: $BITBUCKET_USERNAME
               BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-              REPOSITORY: 'docker-php-apache/v7.4-dev'
+              REPOSITORY: 'docker-php-apache'
+              BRANCH: 'v7.4-dev'
 
         services:
           - docker
