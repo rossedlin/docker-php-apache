@@ -10,11 +10,11 @@ pipelines:
           - docker push rossedlin/php-apache:7.4
     - step:
         script:
-          - pipe: atlassian/trigger-pipeline:4.1.5
+          - pipe: atlassian/trigger-pipeline:5.0.0
             variables:
               BITBUCKET_USERNAME: $BITBUCKET_USERNAME
               BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-              REPOSITORY: 'docker-php-apache'
+              REPOSITORY: 'docker-php-apache/v7.4-dev'
 
         services:
           - docker
