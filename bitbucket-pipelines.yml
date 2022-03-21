@@ -12,14 +12,14 @@ pipelines:
 #          - docker push rossedlin/php-apache:7.4
 
     # Trigger Dev Pipeline
-#    - step:
-#        script:
-#          - pipe: atlassian/trigger-pipeline:5.0.0
-#            variables:
-#              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
-#              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-#              REPOSITORY: 'docker-php-apache'
-#              BRANCH: 'v7.4-dev'
+    - step:
+        script:
+          - pipe: atlassian/trigger-pipeline:5.0.0
+            variables:
+              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+              REPOSITORY: 'docker-php-apache'
+              BRANCH: 'v7.4-dev'
 
     # Deployment to Production
     - step:
