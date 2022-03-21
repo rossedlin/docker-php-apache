@@ -8,5 +8,13 @@ pipelines:
           - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
           - docker build -t rossedlin/php-apache:7.4 .
           - docker push rossedlin/php-apache:7.4
+    - step:
+        script:
+          - pipe: atlassian/trigger-pipeline:4.1.5
+            variables:
+              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+              REPOSITORY: 'docker-php-apache'
+
         services:
           - docker
