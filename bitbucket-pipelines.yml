@@ -8,14 +8,29 @@ pipelines:
           - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
           - docker build -t rossedlin/php-apache:7.4 .
           - docker push rossedlin/php-apache:7.4
-    - step:
-        script:
-          - pipe: atlassian/trigger-pipeline:5.0.0
-            variables:
-              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
-              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-              REPOSITORY: 'docker-php-apache'
-              BRANCH: 'v7.4-dev'
+#    - step:
+#        script:
+#          - pipe: atlassian/trigger-pipeline:5.0.0
+#            variables:
+#              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+#              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+#              REPOSITORY: 'docker-php-apache'
+#              BRANCH: 'v7.4-dev'
 
         services:
           - docker
+
+  custom: # Pipelines that can only be triggered manually
+    sonar:
+      - step:
+          script:
+            - echo "Manual triggers for Sonar are awesome!"
+    deployment-to-prod:
+      - step:
+          script:
+            - echo "Manual triggers for deployments are awesome!"
+  branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+    staging:
+      - step:
+          script:
+            - echo "Automated pipelines are cool too."
