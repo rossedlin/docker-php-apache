@@ -6,7 +6,7 @@ pipelines:
 
     # Build Docker Image
     - step:
-        name: 'Build Docker Image'
+        name: 'Build / Push Docker Image'
         script:
           - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
           - docker build -t rossedlin/php-apache:7.4 .
@@ -23,14 +23,3 @@ pipelines:
               REPOSITORY: 'docker-php-apache'
               REF_TYPE: 'branch'
               REF_NAME: 'v7.4-dev'
-
-    # Deployment to Production
-    - step:
-        name: 'Deployment to Production'
-        deployment: production
-        trigger: 'manual'
-        script:
-          - echo "Your deployment to production script goes here..."
-
-        services:
-          - docker
