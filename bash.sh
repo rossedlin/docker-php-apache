@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker exec -it php-web-1 bash
+docker exec -it php-web bash

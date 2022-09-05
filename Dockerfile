@@ -9,7 +9,6 @@ RUN apt-get update; \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
 
-
 ##
 ## Install Vim
 ##
@@ -37,15 +36,15 @@ RUN apt-get update; \
     docker-php-ext-install mysqli pdo pdo_mysql; \
     rm -rf /var/lib/apt/lists/*;
 
-##
-## Install Imagick
-##
-#RUN apt-get update; \
-#    apt-get install -y libmagickwand-dev --no-install-recommends; \
-#    pecl install imagick; \
-#	docker-php-ext-enable imagick; \
-#	rm -rf /var/lib/apt/lists/*;
 #
+# Install Imagick
+#
+RUN apt-get update; \
+    apt-get install -y libmagickwand-dev --no-install-recommends; \
+    pecl install imagick; \
+	docker-php-ext-enable imagick; \
+	rm -rf /var/lib/apt/lists/*;
+
 ##
 ## Install mbstring
 ##
@@ -54,20 +53,27 @@ RUN apt-get update; \
 #    docker-php-ext-install mbstring; \
 #    rm -rf /var/lib/apt/lists/*;
 #
-##
-## Install GD
-##
-#RUN apt-get update; \
-#    docker-php-ext-install gd; \
-#    rm -rf /var/lib/apt/lists/*;
 #
-##
-## Install BC Math
-##
-#RUN apt-get update; \
-#    docker-php-ext-install bcmath; \
-#    rm -rf /var/lib/apt/lists/*;
+# Install GD
 #
+RUN apt-get update; \
+    docker-php-ext-install gd; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
+# Install BC Math
+#
+RUN apt-get update; \
+    docker-php-ext-install bcmath; \
+    rm -rf /var/lib/apt/lists/*; \
+
+#
+# Install exif
+#
+RUN apt-get update; \
+    docker-php-ext-install exif; \
+    rm -rf /var/lib/apt/lists/*;
+
 ##
 ## Install SSL
 ##
