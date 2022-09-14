@@ -45,6 +45,15 @@ RUN apt-get update; \
 	docker-php-ext-enable imagick; \
 	rm -rf /var/lib/apt/lists/*;
 
+#
+# Install Intl
+#
+RUN apt-get -y update; \
+    apt-get install -y libicu-dev; \
+    docker-php-ext-configure intl; \
+    docker-php-ext-install intl; \
+    rm -rf /var/lib/apt/lists/*;
+
 ##
 ## Install mbstring
 ##
