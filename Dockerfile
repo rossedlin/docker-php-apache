@@ -1,5 +1,11 @@
 FROM php:8.1-apache
 
+#
+# Install SSH Client
+#
+RUN apt-get update; \
+    apt-get install -y openssh-client; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install ZIP
