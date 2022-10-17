@@ -1,6 +1,13 @@
 FROM php:7.4-apache
 
 #
+# Install SSH Client
+#
+RUN apt-get update; \
+    apt-get install -y openssh-client; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Install ZIP
 #
 RUN apt-get update; \
