@@ -60,14 +60,14 @@ RUN apt-get -y update; \
     docker-php-ext-install intl; \
     rm -rf /var/lib/apt/lists/*;
 
-##
-## Install mbstring
-##
-#RUN apt-get update; \
-#    apt-get install -y libonig-dev; \
-#    docker-php-ext-install mbstring; \
-#    rm -rf /var/lib/apt/lists/*;
 #
+# Install mbstring
+#
+RUN apt-get update; \
+    apt-get install -y libonig-dev; \
+    docker-php-ext-install mbstring; \
+    rm -rf /var/lib/apt/lists/*;
+
 #
 # Install GD
 #
