@@ -12,15 +12,3 @@ pipelines:
           - docker push rossedlin/php-apache:8.1
         services:
           - docker
-
-    # Trigger NodeJS v18 Pipeline
-    - step:
-        name: 'Trigger NodeJS v18 Pipeline'
-        script:
-          - pipe: atlassian/trigger-pipeline:5.0.0
-            variables:
-              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
-              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
-              REPOSITORY: 'docker-php-apache'
-              REF_TYPE: 'branch'
-              REF_NAME: 'v8.1-nodejs-18'

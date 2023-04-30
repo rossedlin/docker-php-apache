@@ -6,3 +6,7 @@ It includes an `Httpd v2` server and `PHP v8.1`
 
  - Mount points are `/var/www/public` for the website route.
  - Frameworks like Laravel should be mounted to `/var/www`
+
+# X-Debug
+
+ - Mount `./php/xdebug.ini` > `/usr/local/etc/php/conf.d/xdebug.ini`
