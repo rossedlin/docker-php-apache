@@ -2,10 +2,9 @@ version: '3.3'
 
 services:
   web:
-   image: rossedlin/php-apache:7.4
-   env_file:
-     - .env
-   ports:
-     - "80:80"
-   volumes:
-     - ./:/var/www
+    image: rossedlin/php-apache:7.4
+    container_name: php-web
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www
