@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 #
 # Install SSH Client
@@ -80,9 +80,9 @@ RUN apt-get update; \
 #
 # Install BC Math
 #
-RUN apt-get update; \
-    docker-php-ext-install bcmath; \
-    rm -rf /var/lib/apt/lists/*; \
+#RUN apt-get update; \
+#    docker-php-ext-install bcmath; \
+#    rm -rf /var/lib/apt/lists/*; \
 
 #
 # Install exif
