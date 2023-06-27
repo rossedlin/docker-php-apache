@@ -8,6 +8,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*;
 
 #
+# Install Git
+#
+RUN apt-get update && \
+    apt-get install -y git; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Install ZIP
 #
 RUN apt-get update; \
