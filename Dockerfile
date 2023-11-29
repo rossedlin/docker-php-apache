@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 #
 # Install SSH Client
@@ -101,9 +101,9 @@ RUN apt-get update; \
 #    rm -rf /var/lib/apt/lists/*;
 
 #
-# Install X-Debug
+# Install X-Debug - todo: fix x-debug, failed because of v8.3 not yet supported
 #
-RUN pecl install xdebug; docker-php-ext-enable xdebug;
+#RUN pecl install xdebug; docker-php-ext-enable xdebug;
 
 #
 # Install NodeJS v18

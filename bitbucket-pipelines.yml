@@ -3,12 +3,10 @@ options:
 
 pipelines:
   default:
-
-    # Build Docker Image
     - step:
         script:
           - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
-          - docker build -t rossedlin/php-apache:8.2 .
-          - docker push rossedlin/php-apache:8.2
+          - docker build -t rossedlin/php-apache:8.3 .
+          - docker push rossedlin/php-apache:8.3
         services:
           - docker
