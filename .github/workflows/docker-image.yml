@@ -11,5 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build the Docker Image
       run: docker build -t rossedlin/php-apache:8.3 .
+
+    - uses: actions/checkout@v3
+    - name: Login to Docker
+      run: docker login -u ${{ vars.DOCKER_HUB_USER }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+    - uses: actions/checkout@v3
+    - name: Push Image to Docker
+      run: docker push rossedlin/php-apache:8.3
