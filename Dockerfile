@@ -1,6 +1,25 @@
 FROM php:7.4-apache
 
 #
+# Install NodeJS & NPM
+#
+RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh; \
+    chmod +x nodesource_setup.sh; \
+    ./nodesource_setup.sh; \
+    apt-get update; \
+    apt-get install -y nodejs; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
+# Install Yarn
+#
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -; \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list; \
+    apt-get update; \
+    apt-get install -y yarn; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Install Vim
 #
 RUN apt-get update && \
@@ -55,13 +74,6 @@ RUN apt-get update; \
     rm -rf /var/lib/apt/lists/*;
 
 #
-# Install GD
-#
-RUN apt-get update; \
-    docker-php-ext-install gd; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
 # Install BC Math
 #
 RUN apt-get update; \
@@ -78,28 +90,17 @@ RUN apt-get update; \
     rm -rf /var/lib/apt/lists/*;
 
 #
+# Install GD - https://hub.docker.com/_/php/#php-core-extensions
+#
+RUN apt-get update; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg; \
+    docker-php-ext-install gd; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Install Composer
 #
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-#
-# Install NodeJS & NPM
-#
-RUN curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh; \
-    chmod +x nodesource_setup.sh; \
-    ./nodesource_setup.sh; \
-    apt-get update; \
-    apt-get install -y nodejs; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install Yarn
-#
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -; \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list; \
-    apt-get update; \
-    apt-get install -y yarn; \
-    rm -rf /var/lib/apt/lists/*;
 
 #
 # Tweak Apache
