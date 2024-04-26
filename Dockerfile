@@ -129,7 +129,7 @@ RUN npm install -g firebase-tools;
 # Install JQ - https://stedolan.github.io/jq/
 #
 RUN apt-get update; \
-    apt-get install -y jq; \
+    apt-get --no-install-recommends install -y jq; \
     rm -rf /var/lib/apt/lists/*;
 
 #
