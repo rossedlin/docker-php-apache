@@ -38,8 +38,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #
 # Install MySQL
 #
-RUN apt-get update; \
-    docker-php-ext-install mysqli pdo pdo_mysql; \
+RUN docker-php-ext-install mysqli pdo pdo_mysql; \
     rm -rf /var/lib/apt/lists/*;
 
 #
@@ -87,8 +86,7 @@ RUN apt-get update; \
 #
 # Install exif
 #
-RUN apt-get update; \
-    docker-php-ext-install exif; \
+RUN docker-php-ext-install exif; \
     rm -rf /var/lib/apt/lists/*;
 
 ##
@@ -131,7 +129,7 @@ RUN npm install -g firebase-tools;
 # Install JQ - https://stedolan.github.io/jq/
 #
 RUN apt-get update; \
-    apt-get install jq; \
+    apt-get install -y jq; \
     rm -rf /var/lib/apt/lists/*;
 
 #
