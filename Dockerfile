@@ -3,32 +3,32 @@ FROM php:8.1-apache
 #
 # Install SSH Client
 #
-RUN apt-get update; \
-    apt-get install -y openssh-client; \
+RUN apt update; \
+    apt --no-install-recommends install -y openssh-client; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install ZIP
 #
-RUN apt-get update; \
-    apt-get install -y libzip-dev zip; \
+RUN apt update; \
+    apt --no-install-recommends install -y libzip-dev zip; \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
 
-##
-## Install Vim
-##
-#RUN apt-get update && \
-#    apt-get install -y vim; \
-#    rm -rf /var/lib/apt/lists/*;
+#
+# Install Vim
+#
+RUN apt update && \
+    apt --no-install-recommends install -y vim; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install MySQL Client
 #
-#RUN apt-get update && \
-#    apt-get install -y \
-#    default-mysql-client; \
-#    rm -rf /var/lib/apt/lists/*;
+RUN apt update && \
+    apt --no-install-recommends install -y \
+    default-mysql-client; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Composer
@@ -38,15 +38,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #
 # Install MySQL
 #
-RUN apt-get update; \
-    docker-php-ext-install mysqli pdo pdo_mysql; \
-    rm -rf /var/lib/apt/lists/*;
+RUN apt update && docker-php-ext-install mysqli pdo pdo_mysql && rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Imagick
 #
-RUN apt-get update; \
-    apt-get install -y libmagickwand-dev --no-install-recommends; \
+RUN apt update; \
+    apt --no-install-recommends install -y libmagickwand-dev --no-install-recommends; \
     pecl install imagick; \
 	docker-php-ext-enable imagick; \
 	rm -rf /var/lib/apt/lists/*;
@@ -54,8 +52,8 @@ RUN apt-get update; \
 #
 # Install Intl
 #
-RUN apt-get -y update; \
-    apt-get install -y libicu-dev; \
+RUN apt -y update; \
+    apt --no-install-recommends install -y libicu-dev; \
     docker-php-ext-configure intl; \
     docker-php-ext-install intl; \
     rm -rf /var/lib/apt/lists/*;
@@ -63,16 +61,16 @@ RUN apt-get -y update; \
 #
 # Install mbstring
 #
-RUN apt-get update; \
-    apt-get install -y libonig-dev; \
+RUN apt update; \
+    apt --no-install-recommends install -y libonig-dev; \
     docker-php-ext-install mbstring; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install GD
 #
-RUN apt-get update; \
-    apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
+RUN apt update; \
+    apt --no-install-recommends install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
     docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/; \
     docker-php-ext-install gd; \
     rm -rf /var/lib/apt/lists/*;
@@ -80,22 +78,22 @@ RUN apt-get update; \
 #
 # Install BC Math
 #
-RUN apt-get update; \
+RUN apt update; \
     docker-php-ext-install bcmath; \
     rm -rf /var/lib/apt/lists/*; \
 
 #
 # Install exif
 #
-RUN apt-get update; \
+RUN apt update; \
     docker-php-ext-install exif; \
     rm -rf /var/lib/apt/lists/*;
 
 ##
 ## Install SSL
 ##
-#RUN apt-get update; \
-#    apt install certbot python3-certbot-apache; \
+#RUN apt update; \
+#    apt --no-install-recommends install certbot python3-certbot-apache; \
 #    docker-php-ext-install sockets; \
 #    a2enmod ssl; \
 #    rm -rf /var/lib/apt/lists/*;
@@ -108,30 +106,30 @@ RUN pecl install xdebug; docker-php-ext-enable xdebug;
 #
 # Install NodeJS v18
 #
-RUN cd ~; \
-    curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.shapt-get update; \
-    chmod +x nodesource_setup.shapt-get; \
-    ./nodesource_setup.shapt-get; \
+WORKDIR /root
+RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.shapt update; \
+    chmod +x nodesource_setup.shapt; \
+    ./nodesource_setup.shapt; \
     apt update; \
-    apt install -y nodejs build-essential; \
-    rm nodesource_setup.shapt-get; \
+    apt --no-install-recommends install -y nodejs build-essential; \
+    rm nodesource_setup.shapt; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Yarn
 #
-RUN npm install -g yarn;
+RUN npm install --ignore-scripts -g yarn;
 
 #
 # Install Firebase Globally
 #
-RUN npm install -g firebase-tools;
+RUN npm install --ignore-scripts -g firebase-tools;
 
 #
 # Install JQ - https://stedolan.github.io/jq/
 #
-RUN apt-get update; \
-    apt-get install jq; \
+RUN apt update; \
+    apt --no-install-recommends install -y jq; \
     rm -rf /var/lib/apt/lists/*;
 
 #
