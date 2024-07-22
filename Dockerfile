@@ -11,7 +11,7 @@ RUN apt update; \
 # Install ZIP
 #
 RUN apt update; \
-    apt --no-install-recommends install -y libzip-dev zip; \
+    apt --no-install-recommends install -y libzip-dev zip unzip; \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
 
