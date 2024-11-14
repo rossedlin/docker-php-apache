@@ -23,6 +23,13 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*;
 
 #
+# Install Git
+#
+RUN apt update && \
+    apt --no-install-recommends install -y git; \
+    rm -rf /var/lib/apt/lists/*;
+
+#
 # Install MySQL Client
 #
 RUN apt update && \
@@ -80,7 +87,7 @@ RUN apt update; \
 #
 RUN apt update; \
     docker-php-ext-install bcmath; \
-    rm -rf /var/lib/apt/lists/*; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install exif
