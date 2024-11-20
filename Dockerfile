@@ -103,6 +103,11 @@ RUN apt-get update; \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #
+# Install X-Debug
+#
+RUN pecl install xdebug-2.9.8; docker-php-ext-enable xdebug;
+
+#
 # Tweak Apache
 #
 COPY apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf
