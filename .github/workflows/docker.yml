@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: Docker
 
 on:
   push:
-    branches: [ "v7.1" ]
-  pull_request:
     branches: [ "v7.1" ]
 
 jobs:
