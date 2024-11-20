@@ -1,4 +1,4 @@
-# Docker PHP Apache2
+# Docker PHP Apache
 
 This is a docker container build for development purposes.
 
