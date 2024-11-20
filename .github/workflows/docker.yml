@@ -4,6 +4,8 @@ on:
   push:
     branches: [ "v7.1" ]
 
+concurrency: v7.1
+
 jobs:
   build:
     runs-on: ubuntu-latest
