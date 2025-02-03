@@ -1,8 +1,10 @@
-name: Build
+name: Docker
 
 on:
   push:
     branches: [ "v8.1" ]
+  schedule:
+    - cron: '0 22 * * 0' # Run every Monday at 8:00 AM UTC
 
 jobs:
   build:
