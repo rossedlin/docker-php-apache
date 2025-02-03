@@ -1,40 +1,11 @@
 FROM php:8.1-apache
 
 #
-# Install SSH Client
+# Install SSH Client, Vim, Git, MySQL Client, Zip
 #
-RUN apt update; \
-    apt --no-install-recommends install -y openssh-client; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install ZIP
-#
-RUN apt update; \
-    apt --no-install-recommends install -y libzip-dev zip unzip; \
+RUN apt-get update; \
+    apt-get --no-install-recommends install -y default-mysql-client openssh-client git libzip-dev zip unzip vim; \
     docker-php-ext-install zip; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install Vim
-#
-RUN apt update && \
-    apt --no-install-recommends install -y vim; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install Git
-#
-RUN apt update && \
-    apt --no-install-recommends install -y git; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install MySQL Client
-#
-RUN apt update && \
-    apt --no-install-recommends install -y \
-    default-mysql-client; \
     rm -rf /var/lib/apt/lists/*;
 
 #
@@ -45,13 +16,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 #
 # Install MySQL
 #
-RUN apt update && docker-php-ext-install mysqli pdo pdo_mysql && rm -rf /var/lib/apt/lists/*;
+RUN apt-get update; \
+    docker-php-ext-install mysqli pdo pdo_mysql; \
+    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Imagick
 #
-RUN apt update; \
-    apt --no-install-recommends install -y libmagickwand-dev --no-install-recommends; \
+RUN apt-get update; \
+    apt-get --no-install-recommends install -y libmagickwand-dev --no-install-recommends; \
     pecl install imagick; \
 	docker-php-ext-enable imagick; \
 	rm -rf /var/lib/apt/lists/*;
@@ -59,8 +32,8 @@ RUN apt update; \
 #
 # Install Intl
 #
-RUN apt -y update; \
-    apt --no-install-recommends install -y libicu-dev; \
+RUN apt-get -y update; \
+    apt-get --no-install-recommends install -y libicu-dev; \
     docker-php-ext-configure intl; \
     docker-php-ext-install intl; \
     rm -rf /var/lib/apt/lists/*;
@@ -68,16 +41,16 @@ RUN apt -y update; \
 #
 # Install mbstring
 #
-RUN apt update; \
-    apt --no-install-recommends install -y libonig-dev; \
+RUN apt-get update; \
+    apt-get --no-install-recommends install -y libonig-dev; \
     docker-php-ext-install mbstring; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install GD
 #
-RUN apt update; \
-    apt --no-install-recommends install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
+RUN apt-get update; \
+    apt-get --no-install-recommends install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
     docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/; \
     docker-php-ext-install gd; \
     rm -rf /var/lib/apt/lists/*;
@@ -85,22 +58,22 @@ RUN apt update; \
 #
 # Install BC Math
 #
-RUN apt update; \
+RUN apt-get update; \
     docker-php-ext-install bcmath; \
     rm -rf /var/lib/apt/lists/*;
 
 #
 # Install exif
 #
-RUN apt update; \
+RUN apt-get update; \
     docker-php-ext-install exif; \
     rm -rf /var/lib/apt/lists/*;
 
 ##
 ## Install SSL
 ##
-#RUN apt update; \
-#    apt --no-install-recommends install certbot python3-certbot-apache; \
+#RUN apt-get update; \
+#    apt-get --no-install-recommends install certbot python3-certbot-apache; \
 #    docker-php-ext-install sockets; \
 #    a2enmod ssl; \
 #    rm -rf /var/lib/apt/lists/*;
@@ -117,8 +90,8 @@ WORKDIR /root
 RUN curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.shapt update; \
     chmod +x nodesource_setup.shapt; \
     ./nodesource_setup.shapt; \
-    apt update; \
-    apt --no-install-recommends install -y nodejs build-essential; \
+    apt-get update; \
+    apt-get --no-install-recommends install -y nodejs build-essential; \
     rm nodesource_setup.shapt; \
     rm -rf /var/lib/apt/lists/*;
 
@@ -135,8 +108,8 @@ RUN npm install --ignore-scripts -g firebase-tools;
 #
 # Install JQ - https://stedolan.github.io/jq/
 #
-RUN apt update; \
-    apt --no-install-recommends install -y jq; \
+RUN apt-get update; \
+    apt-get --no-install-recommends install -y jq; \
     rm -rf /var/lib/apt/lists/*;
 
 #
