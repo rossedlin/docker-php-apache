@@ -1,34 +1,12 @@
 FROM php:8.2-apache
 
 #
-# Install SSH Client
+# Install SSH Client, Vim, Git, MySQL Client, Zip
 #
 RUN apt-get update; \
-    apt-get install -y openssh-client; \
-    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install ZIP
-#
-RUN apt-get update; \
-    apt-get install -y libzip-dev zip; \
+    apt-get --no-install-recommends install -y default-mysql-client openssh-client git libzip-dev zip unzip vim; \
     docker-php-ext-install zip; \
     rm -rf /var/lib/apt/lists/*;
-
-##
-## Install Vim
-##
-#RUN apt-get update && \
-#    apt-get install -y vim; \
-#    rm -rf /var/lib/apt/lists/*;
-
-#
-# Install MySQL Client
-#
-#RUN apt-get update && \
-#    apt-get install -y \
-#    default-mysql-client; \
-#    rm -rf /var/lib/apt/lists/*;
 
 #
 # Install Composer
@@ -46,7 +24,7 @@ RUN apt-get update; \
 # Install Imagick
 #
 RUN apt-get update; \
-    apt-get install -y libmagickwand-dev --no-install-recommends; \
+    apt-get --no-install-recommends install -y libmagickwand-dev --no-install-recommends; \
     pecl install imagick; \
 	docker-php-ext-enable imagick; \
 	rm -rf /var/lib/apt/lists/*;
@@ -55,7 +33,7 @@ RUN apt-get update; \
 # Install Intl
 #
 RUN apt-get -y update; \
-    apt-get install -y libicu-dev; \
+    apt-get --no-install-recommends install -y libicu-dev; \
     docker-php-ext-configure intl; \
     docker-php-ext-install intl; \
     rm -rf /var/lib/apt/lists/*;
@@ -64,7 +42,7 @@ RUN apt-get -y update; \
 # Install mbstring
 #
 RUN apt-get update; \
-    apt-get install -y libonig-dev; \
+    apt-get --no-install-recommends install -y libonig-dev; \
     docker-php-ext-install mbstring; \
     rm -rf /var/lib/apt/lists/*;
 
@@ -72,7 +50,7 @@ RUN apt-get update; \
 # Install GD
 #
 RUN apt-get update; \
-    apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
+    apt-get --no-install-recommends install -y libfreetype6-dev libjpeg62-turbo-dev libgd-dev libpng12-dev; \
     docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/; \
     docker-php-ext-install gd; \
     rm -rf /var/lib/apt/lists/*;
@@ -95,7 +73,7 @@ RUN apt-get update; \
 ## Install SSL
 ##
 #RUN apt-get update; \
-#    apt install certbot python3-certbot-apache; \
+#    apt-get --no-install-recommends install certbot python3-certbot-apache; \
 #    docker-php-ext-install sockets; \
 #    a2enmod ssl; \
 #    rm -rf /var/lib/apt/lists/*;
@@ -120,12 +98,12 @@ RUN cd ~; \
 #
 # Install Yarn
 #
-RUN npm install -g yarn;
+RUN npm install --ignore-scripts -g yarn;
 
 #
 # Install Firebase Globally
 #
-RUN npm install -g firebase-tools;
+RUN npm install --ignore-scripts -g firebase-tools;
 
 #
 # Install JQ - https://stedolan.github.io/jq/
