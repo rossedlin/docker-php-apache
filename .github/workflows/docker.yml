@@ -1,0 +1,23 @@
+name: Docker
+
+on:
+  push:
+    branches: [ "v8.2" ]
+  schedule:
+    - cron: '0 22 * * 0' # Run every Monday at 8:00 AM UTC
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker Image
+        run: docker build -t rossedlin/php-apache:8.2 .
+
+      - uses: actions/checkout@v4
+      - name: Login to Docker
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ vars.DOCKER_HUB_USER }} --password-stdin
+
+      - uses: actions/checkout@v4
+      - name: Push Image to Docker
+        run: docker push rossedlin/php-apache:8.2
