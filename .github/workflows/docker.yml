@@ -2,7 +2,7 @@ name: Docker
 
 on:
   push:
-    branches: [ "v8.2" ]
+    branches: [ "v8.4" ]
   schedule:
     - cron: '0 22 * * 0' # Run every Monday at 8:00 AM UTC
 
@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker Image
-        run: docker build -t rossedlin/php-apache:8.2 .
+        run: docker build -t rossedlin/php-apache:8.4 .
 
       - uses: actions/checkout@v4
       - name: Login to Docker
@@ -20,4 +20,4 @@ jobs:
 
       - uses: actions/checkout@v4
       - name: Push Image to Docker
-        run: docker push rossedlin/php-apache:8.2
+        run: docker push rossedlin/php-apache:8.4
