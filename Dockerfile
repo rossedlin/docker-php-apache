@@ -81,7 +81,7 @@ RUN apt-get update; \
 #
 # Install X-Debug
 #
-RUN pecl install xdebug; docker-php-ext-enable xdebug;
+#RUN pecl install xdebug; docker-php-ext-enable xdebug;
 
 #
 # Install NodeJS v18
