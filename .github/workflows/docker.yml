@@ -4,7 +4,9 @@ on:
   push:
     branches: [ "v8.1" ]
   schedule:
-    - cron: '0 8 * * 1' # Every Monday at 8:00 AM UTC
+    - cron: '0 22 * * 0' # Run every Monday at 8:00 AM UTC
+
+concurrency: v8.1
 
 jobs:
   build:
