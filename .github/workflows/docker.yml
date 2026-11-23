@@ -2,11 +2,11 @@ name: Docker
 
 on:
   push:
-    branches: [ "v8.1" ]
+    branches: [ "v8.3" ]
   schedule:
     - cron: '0 22 * * 0' # Run every Monday at 8:00 AM UTC
 
-concurrency: v8.1
+concurrency: v8.3
 
 jobs:
   build:
@@ -34,4 +34,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: rossedlin/php-apache:8.1
+          tags: rossedlin/php-apache:8.3
