@@ -1,4 +1,4 @@
-FROM php:8.6-apache
+FROM php:8.5-apache
 
 #
 # Install SSH Client, Vim, Git, MySQL Client, Zip
