@@ -1,6 +1,6 @@
 services:
   web:
-    image: rossedlin/php-apache:8.4
+    image: rossedlin/php-apache:8.6
     container_name: php-web
     ports:
       - "80:80"
